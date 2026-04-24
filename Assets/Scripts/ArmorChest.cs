@@ -4,7 +4,7 @@ using UnityEngine;
 public class ArmorChest : MonoBehaviour
 {
 
-
+    public GameObject particleEffect;
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("Player"))
@@ -18,6 +18,13 @@ public class ArmorChest : MonoBehaviour
             {
                 enemy.hasArmor = true;
                 Debug.Log("got armor");
+                // Spawn particles
+                Instantiate(
+                    particleEffect,
+                    transform.position,
+                    Quaternion.identity
+                );
+
             }
         }
     }

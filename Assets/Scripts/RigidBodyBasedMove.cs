@@ -14,6 +14,7 @@ public class RigidBodyBasedMove : MonoBehaviour
     TargetInteractable targetInteractable;
     public TextMeshProUGUI scoreText;
     [SerializeField] DoorCode doorCode;
+    public AudioClip coinSound;
 
 
     Vector2 currentVelocity;
@@ -57,6 +58,12 @@ public class RigidBodyBasedMove : MonoBehaviour
         {
             score += 1;
             other.gameObject.SetActive(false);
+            // Play sound
+            AudioSource.PlayClipAtPoint(
+                coinSound,
+                transform.position
+            );
+
             doorCode.hasCoin = true;
             ui.ShowMessage("Open the door!");
             Debug.Log("Picked up! Score = " + score);
