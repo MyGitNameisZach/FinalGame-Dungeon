@@ -1,10 +1,8 @@
 using UnityEngine;
 
-public class DoorCode : MonoBehaviour
+public class Ladder : MonoBehaviour
 {
     public Transform teleportLocation; // Drag target location here
-    public Transform startloco;
-    public bool hasCoin = false;
     private UIMessage ui;
 
     void Start()
@@ -12,20 +10,14 @@ public class DoorCode : MonoBehaviour
         ui = FindObjectOfType<UIMessage>();
     }
 
-    
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.CompareTag("Player") && hasCoin)
+        if (other.CompareTag("Player"))
         {
-            Debug.Log(hasCoin);
             other.transform.position = teleportLocation.position;
-            ui.ShowMessage("Find the ladder");
-
-        }
-        else
-        {
-            other.transform.position = startloco.position;
+            ui.ShowMessage("You found the treasure!!" +
+                "Go through the door to end the game!");
         }
     }
 }
